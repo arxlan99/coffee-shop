@@ -1,9 +1,17 @@
-import React from "react";
+import { Dispatch } from "@reduxjs/toolkit";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { AppDispatch, RootState } from "../store";
+import { login, logout } from "../store/userSlice";
+import "./Header.css";
 
-interface Props {}
+interface MyProps {}
 
 const Header = (props: Props) => {
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+  const menuDisplay = showMenu ? "side__menu" : "side__menu menu-hidden";
+
   return (
     <div className="header">
       <div className="header__left">
@@ -20,9 +28,76 @@ const Header = (props: Props) => {
           Gift Cards
         </Link>
       </div>
-      <div className="header__right"></div>
+      <div className="header__right" style={{ cursor: "pointer" }}>
+        <div className="header_right_buttons">
+          {props.user ? (
+            <Link to="/login">
+              <button className="side__menu-login-btn">Sign in</button>
+            </Link>
+          ) : (
+            <Link to="/signup">
+              <button className="side__menu-signup-btn">Join now</button>
+            </Link>
+          )}
+        </div>
+        <div className="side__menu-open" onClick={() => setShowMenu(true)}>
+          |||
+        </div>
+        <div className={`${menuDisplay}`}>
+          <div className="side__menu-close" onClick={() => setShowMenu(false)}>
+            X
+          </div>
+          <ul>
+            <li className="side__menu-li">
+              <Link to="#">Menu</Link>
+            </li>
+            <li className="side__menu-li">
+              <Link to="#">Rewards</Link>
+            </li>
+            <li className="side__menu-li">
+              <Link to="#">Gift Cards</Link>
+            </li>
+            <hr style={{ margin: "0 40px 20px 20px" }} />
+            <Link to="/login">
+              <button className="side__menu-login-btn">Sign in</button>
+            </Link>
+            <Link to="/signup">
+              <button className="side__menu-signup-btn">Join now</button>
+            </Link>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Header;
+interface PropToState {
+  user: {
+    id: number;
+    name: string;
+    email: string;
+  };
+}
+
+interface DispatchProps {
+  login: (user: { id: number; name: string; email: string }) => void;
+  logout: () => void;
+}
+
+const mapStateToProps = (state: RootState) => ({
+  user: state.user.user,
+});
+
+const mapDispatchToProps = (dispatch: AppDispatch): DispatchProps => {
+  return {
+    login: (user: any) => dispatch(login(user)),
+    logout: () => dispatch(logout()),
+  };
+};
+
+type Props = PropToState & DispatchProps & MyProps;
+
+export default connect<PropToState, DispatchProps, MyProps>(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);

@@ -1,13 +1,14 @@
-interface Props {
-    
-}
+import Header from "../components/Header";
+
+interface Props {}
 
 const HomePage = (props: Props) => {
-    return (
-        <div>
-            Home
-        </div>
-    )
-}
+  return (
+    <div>
+      <Header />
+      Home
+    </div>
+  );
+};
 
-export default HomePage
+export default HomePage;
