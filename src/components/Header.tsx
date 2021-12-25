@@ -1,4 +1,3 @@
-import { Dispatch } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -58,12 +57,15 @@ const Header = (props: Props) => {
               <Link to="#">Gift Cards</Link>
             </li>
             <hr style={{ margin: "0 40px 20px 20px" }} />
-            <Link to="/login">
-              <button className="side__menu-login-btn">Sign in</button>
-            </Link>
-            <Link to="/signup">
-              <button className="side__menu-signup-btn">Join now</button>
-            </Link>
+            {props.user ? (
+              <Link to="/login">
+                <button className="side__menu-login-btn">Sign in</button>
+              </Link>
+            ) : (
+              <Link to="/signup">
+                <button className="side__menu-signup-btn">Join now</button>
+              </Link>
+            )}
           </ul>
         </div>
       </div>
@@ -84,7 +86,7 @@ interface DispatchProps {
   logout: () => void;
 }
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: RootState): PropToState => ({
   user: state.user.user,
 });
 
@@ -97,7 +99,4 @@ const mapDispatchToProps = (dispatch: AppDispatch): DispatchProps => {
 
 type Props = PropToState & DispatchProps & MyProps;
 
-export default connect<PropToState, DispatchProps, MyProps>(
-  mapStateToProps,
-  mapDispatchToProps
-)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
