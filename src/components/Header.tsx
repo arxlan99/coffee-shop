@@ -92,7 +92,8 @@ const mapStateToProps = (state: RootState): PropToState => ({
 
 const mapDispatchToProps = (dispatch: AppDispatch): DispatchProps => {
   return {
-    login: (user: any) => dispatch(login(user)),
+    login: (user: { id: number; name: string; email: string }) =>
+      dispatch(login(user)),
     logout: () => dispatch(logout()),
   };
 };
