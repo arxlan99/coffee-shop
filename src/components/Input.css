@@ -1,0 +1,44 @@
+.user-input-wrp {
+    position: relative;
+    width: 100%;
+
+}
+
+.user-input-wrp .inputText {
+    width: 100%;
+    outline: none;
+    box-shadow: none !important;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid black;
+    padding: 16px 0;
+}
+
+.user-input-wrp .inputText:focus {
+    border-color: #00A862;
+    border-width: medium medium 2px;
+}
+
+.user-input-wrp .floating-label {
+    position: absolute;
+    pointer-events: none;
+    left: 20px;
+    top: 35px;
+    transition: 0.2s ease all;
+    font-size: 18px;
+    letter-spacing: 0.8px;
+
+}
+
+.user-input-wrp input:focus~.floating-label,
+.user-input-wrp input:not(:focus):valid~.floating-label {
+    background-color: white;
+    top: 14px;
+    left: 10px;
+    font-size: 13px;
+    opacity: 1;
+    z-index: 9;
+    padding: 0 5px;
+    letter-spacing: normal;
+
+}

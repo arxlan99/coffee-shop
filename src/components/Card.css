@@ -1,0 +1,11 @@
+.card>img {
+    object-fit: contain;
+    width: 300px;
+    border-radius: 12px;
+    transition: all .3s ease;
+}
+
+.card>img:hover {
+    transform: scale(1.07) rotate(2deg);
+
+}

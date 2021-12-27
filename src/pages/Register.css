@@ -1,0 +1,188 @@
+.register__navbar {
+    height: 84px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.06),
+        0 0 2px rgba(0, 0, 0, 0.07);
+    z-index: 2;
+    background-color: white;
+
+
+}
+
+
+.register__logo>img {
+    height: 50px;
+    object-fit: contain;
+}
+
+.register__form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.register__form--title {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.register__form--card {
+    width: 100%;
+    max-width: 580px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .07), 0 4px 5px rgba(0, 0, 0, .06), 0 1px 10px rgba(0, 0, 0, .1);
+    padding: 30px 90px;
+}
+
+.register__form--card-title {
+    margin-bottom: -30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.register__form-checkboxContainer {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.register__form-checkbox {
+    height: 25px;
+    width: 25px;
+    border-radius: 10px;
+    background-color: red;
+
+}
+
+.register__form-checkbox+label {
+    min-width: 0;
+    padding-left: 5px;
+    padding-top: 2px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: .8px;
+}
+
+.register__form--reset {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+
+.register__form--reset>a:hover {
+    opacity: .8;
+}
+
+.register__form--reset>a {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4A6947;
+    text-decoration: underline;
+    font-weight: 800;
+    text-decoration-color: #4A6947;
+    text-decoration-thickness: 2px;
+}
+
+.register__form--submit {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    float: right;
+}
+
+.register__joinCard {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 500px;
+    background-color: #F1F8F5;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+}
+
+.register__joinCard>h1 {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 800;
+    color: #00754A;
+    margin-bottom: 10px;
+
+}
+
+.register__joinCard>p {
+    text-align: center;
+    width: 80%;
+}
+
+.register__joinCard>a>button {
+    background: none;
+    border-radius: 50px;
+    border-style: solid;
+    border-width: 1px;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 7px 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: all .4s ease;
+    cursor: pointer;
+    color: #00754A;
+}
+
+.register__joinCard>a>button:hover {
+    background: #00754A;
+    color: white;
+}
+
+
+
+.register__authIcons {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .07), 0 4px 5px rgba(0, 0, 0, .06), 0 1px 10px rgba(0, 0, 0, .1);
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.register__authIcons>a>img {
+    cursor: pointer;
+    transition: all .2s;
+    margin-right: 25px;
+}
+
+.register__authIcons>a>img:hover {
+    transform: scale(0.9) translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .register__form--card {
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none;
+    }
+
+    .register__form--card {
+        padding: 30px 20px;
+    }
+}

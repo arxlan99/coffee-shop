@@ -1,0 +1,27 @@
+.submit-button {
+    background: #00a862;
+    border-radius: 500px;
+    box-shadow: 0 0 6px rgb(0 0 0 / 24%), 0 8px 12px rgb(0 0 0 / 14%);
+    color: #fff;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    overflow: hidden;
+    padding: 14px 1.5rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: .2s;
+    transition-property: transform, box-shadow, width, height, scale;
+    transition-timing-function: ease;
+    z-index: 1;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.submit-button:hover {
+    box-shadow: 0 0 6px rgb(0 0 0 / 24%), 0 8px 12px rgb(0 0 0 / 14%);
+    transform: translateY(-2px) scale(1.02);
+}

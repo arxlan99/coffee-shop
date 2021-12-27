@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { AppDispatch, RootState } from "../store";
@@ -11,6 +11,7 @@ const Header = (props: Props) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const menuDisplay = showMenu ? "side__menu" : "side__menu menu-hidden";
 
+  console.log(props.user.name);
   return (
     <div className="header">
       <div className="header__left">
@@ -23,20 +24,23 @@ const Header = (props: Props) => {
         <Link to="#" className="header__link">
           Rewards
         </Link>
-        <Link to="#" className="header__link">
+        <Link to="/gift-cards" className="header__link">
           Gift Cards
         </Link>
       </div>
       <div className="header__right" style={{ cursor: "pointer" }}>
         <div className="header_right_buttons">
-          {props.user ? (
-            <Link to="/login">
-              <button className="side__menu-login-btn">Sign in</button>
-            </Link>
+          {!props.user.name ? (
+            <Fragment>
+              <Link to="/login">
+                <button className="side__menu-login-btn">Sign in</button>
+              </Link>
+              <Link to="/signup">
+                <button className="side__menu-signup-btn">Join now</button>
+              </Link>
+            </Fragment>
           ) : (
-            <Link to="/signup">
-              <button className="side__menu-signup-btn">Join now</button>
-            </Link>
+            <span> John Doe </span>
           )}
         </div>
         <div className="side__menu-open" onClick={() => setShowMenu(true)}>
@@ -57,14 +61,17 @@ const Header = (props: Props) => {
               <Link to="#">Gift Cards</Link>
             </li>
             <hr style={{ margin: "0 40px 20px 20px" }} />
-            {props.user ? (
-              <Link to="/login">
-                <button className="side__menu-login-btn">Sign in</button>
-              </Link>
+            {!props.user.name ? (
+              <Fragment>
+                <Link to="/login">
+                  <button className="side__menu-login-btn">Sign in</button>
+                </Link>
+                <Link to="/signup">
+                  <button className="side__menu-signup-btn">Join now</button>
+                </Link>
+              </Fragment>
             ) : (
-              <Link to="/signup">
-                <button className="side__menu-signup-btn">Join now</button>
-              </Link>
+              <span> John Doe </span>
             )}
           </ul>
         </div>
