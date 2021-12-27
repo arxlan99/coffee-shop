@@ -58,7 +58,7 @@ const Header = (props: Props) => {
               <Link to="#">Rewards</Link>
             </li>
             <li className="side__menu-li">
-              <Link to="#">Gift Cards</Link>
+              <Link to="/gift-cards">Gift Cards</Link>
             </li>
             <hr style={{ margin: "0 40px 20px 20px" }} />
             {!props.user.name ? (
