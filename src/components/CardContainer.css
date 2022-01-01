@@ -1,5 +1,44 @@
 .cardContainer-cards {
     display: flex;
     column-gap: 30px;
+    position: relative;
+    transition: all 1s;
+
 }
 
+.cardContainer__arrowLeft {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9;
+    border-radius: 50%;
+    transition: all 0.3s;
+    cursor: pointer;
+
+}
+
+.cardContainer__arrowLeft:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.cardContainer__arrowRight {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: all 0.3s;
+    cursor: pointer;
+
+}
+
+.cardContainer__arrowRight:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* @media (max-width: 768px) {
+    .cardContainer__arrowRight {}
+} */

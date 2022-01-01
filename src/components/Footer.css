@@ -45,6 +45,7 @@
 .footer__iconContainer {
     display: flex;
     column-gap: 20px;
+    margin-top: 25px;
 
 }
 

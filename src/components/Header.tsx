@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { AppDispatch, RootState } from "../store";
@@ -11,14 +11,18 @@ const Header = (props: Props) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const menuDisplay = showMenu ? "side__menu" : "side__menu menu-hidden";
 
-  console.log(props.user.name);
+  const handleLogout = (e: any) => {
+    e.preventDefault();
+    props.logout();
+  };
+
   return (
     <div className="header">
       <div className="header__left">
         <Link className="header__logo" to="/">
           <img src="/images/logo.png" alt="logo" />
         </Link>
-        <Link to="/menu" className="header__link">
+        <Link to="#" className="header__link">
           Menu
         </Link>
         <Link to="#" className="header__link">
@@ -29,20 +33,27 @@ const Header = (props: Props) => {
         </Link>
       </div>
       <div className="header__right" style={{ cursor: "pointer" }}>
-        <div className="header_right_buttons">
-          {!props.user.name ? (
-            <Fragment>
-              <Link to="/login">
-                <button className="side__menu-login-btn">Sign in</button>
-              </Link>
-              <Link to="/signup">
-                <button className="side__menu-signup-btn">Join now</button>
-              </Link>
-            </Fragment>
-          ) : (
-            <span> John Doe </span>
-          )}
-        </div>
+        {props.status === "loading" ? (
+          <div>Loading .... </div>
+        ) : (
+          <Fragment>
+            <div className="header_right_buttons">
+              {!props.user.uid ? (
+                <Fragment>
+                  <Link to="/login">
+                    <button className="side__menu-login-btn">Sign in</button>
+                  </Link>
+                  <Link to="/signup">
+                    <button className="side__menu-signup-btn">Join now</button>
+                  </Link>
+                </Fragment>
+              ) : (
+                <span onClick={(e) => handleLogout(e)}> Logout </span>
+              )}
+            </div>
+          </Fragment>
+        )}
+
         <div className="side__menu-open" onClick={() => setShowMenu(true)}>
           |||
         </div>
@@ -61,7 +72,7 @@ const Header = (props: Props) => {
               <Link to="/gift-cards">Gift Cards</Link>
             </li>
             <hr style={{ margin: "0 40px 20px 20px" }} />
-            {!props.user.name ? (
+            {!props.user.uid ? (
               <Fragment>
                 <Link to="/login">
                   <button className="side__menu-login-btn">Sign in</button>
@@ -71,7 +82,7 @@ const Header = (props: Props) => {
                 </Link>
               </Fragment>
             ) : (
-              <span> John Doe </span>
+              <span style={{ marginLeft: "20px" }}> Logout </span>
             )}
           </ul>
         </div>
@@ -82,29 +93,32 @@ const Header = (props: Props) => {
 
 interface PropToState {
   user: {
-    id: number;
-    name: string;
+    uid: string;
     email: string;
   };
+  status: "idle" | "loading" | "failed";
 }
 
 interface DispatchProps {
-  login: (user: { id: number; name: string; email: string }) => void;
   logout: () => void;
 }
 
-const mapStateToProps = (state: RootState): PropToState => ({
-  user: state.user.user,
-});
+const mapStateToProps = (state: any): PropToState => {
+  return {
+    user: state.user.user,
+    status: state.user.status,
+  };
+};
 
 const mapDispatchToProps = (dispatch: AppDispatch): DispatchProps => {
   return {
-    login: (user: { id: number; name: string; email: string }) =>
-      dispatch(login(user)),
     logout: () => dispatch(logout()),
   };
 };
 
 type Props = PropToState & DispatchProps & MyProps;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect<PropToState, DispatchProps, MyProps>(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);

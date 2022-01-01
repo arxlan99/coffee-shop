@@ -3,6 +3,7 @@
     width: 300px;
     border-radius: 12px;
     transition: all .3s ease;
+    cursor: pointer;
 }
 
 .card>img:hover {

@@ -2,19 +2,24 @@ import "./Input.css";
 
 interface Props {
   placeholder?: string;
-  /*   type: string;
-  name: string;
-  placeholder: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void; */
+  onChange?: (event: any) => void;
+  type?: string;
+  isEmpty?: boolean;
 }
 
 const Input = (props: Props) => {
   return (
     <div className="user-input-wrp">
       <br />
-      <input type="text" className="inputText" required />
-      <span className="floating-label">{props.placeholder}</span>
+      <input
+        type={props.type}
+        className="inputText"
+        required
+        onChange={props.onChange}
+      />
+      {!props.isEmpty && (
+        <span className="floating-label">{props.placeholder}</span>
+      )}
     </div>
   );
 };

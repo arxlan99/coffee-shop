@@ -1,12 +1,16 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import GiftCardsPage from "./pages/GiftCardsPage";
+import CardDetailPage from "./pages/CardDetailPage";
+import GiftCardPage from "./pages/GiftCardsPage";
+import { connect } from "react-redux";
 
-function App() {
+const App = (props: any) => {
+  console.log(props.user.uid);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -15,10 +19,27 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Register />}></Route>
-        <Route path="/gift-cards" element={<GiftCardsPage />}></Route>
+        <Route path="/gift-cards">
+          <Route index element={<GiftCardPage />}></Route>
+          {props.user.uid ? (
+            <Route path=":id" element={<CardDetailPage />}></Route>
+          ) : (
+            <Route path="*" element={<Navigate to="/login" />} />
+          )}
+        </Route>
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state: any) => {
+  return {
+    user: state.user.user,
+  };
+};
+
+const mapDispatchToProps = () => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
