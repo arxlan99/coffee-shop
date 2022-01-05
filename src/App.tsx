@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -9,7 +9,11 @@ import GiftCardPage from "./pages/GiftCardsPage";
 import { connect } from "react-redux";
 
 const App = (props: any) => {
-  console.log(props.user.uid);
+  useEffect(() => {
+    window.addEventListener("storage", (e: any) => {
+      window.location.reload();
+    });
+  }, [props]);
 
   return (
     <BrowserRouter>
